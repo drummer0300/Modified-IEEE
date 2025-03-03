@@ -314,19 +314,40 @@
       </if>
     </choose>
   </macro>
-  <!-- Citation -->
+  <!-- Citation Grouping Macro -->
+  <macro name="citation-grouping">
+    <choose>
+      <if match="any">
+        <group delimiter=", ">
+          <text variable="citation-number"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Citation Range Macro (For Consecutive Numbers) -->
+  <macro name="citation-range">
+    <choose>
+      <if match="any">
+        <group delimiter="–">
+          <text variable="citation-number"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Citation Formatting -->
   <citation>
     <sort>
       <key variable="citation-number"/>
     </sort>
     <layout prefix="[" suffix="]" delimiter=", ">
       <group delimiter=", ">
+        <text macro="citation-range"/>
         <text macro="citation-grouping"/>
       </group>
     </layout>
   </citation>
-
-
 
   <!-- Bibliography -->
   <bibliography entry-spacing="0" second-field-align="flush">
@@ -511,18 +532,4 @@
       </choose>
     </layout>
   </bibliography>
-<macro name="citation-grouping">
-  <choose>
-    <if is-numeric="citation-number">
-      <group delimiter="–">
-        <text variable="citation-number"/>
-      </group>
-    </if>
-    <else>
-      <group delimiter=", ">
-        <text variable="citation-number"/>
-      </group>
-    </else>
-  </choose>
-</macro>
 </style>
