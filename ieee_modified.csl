@@ -326,6 +326,8 @@
     </layout>
   </citation>
 
+
+
   <!-- Bibliography -->
   <bibliography entry-spacing="0" second-field-align="flush">
     <layout>
@@ -509,17 +511,18 @@
       </choose>
     </layout>
   </bibliography>
-  <macro name="citation-grouping">
+<macro name="citation-grouping">
   <choose>
-    <if match="any">
+    <if is-numeric="citation-number">
       <group delimiter="–">
-        <text variable="citation-number" form="numeric"/>
+        <text variable="citation-number"/>
       </group>
     </if>
     <else>
-      <text variable="citation-number"/>
+      <group delimiter=", ">
+        <text variable="citation-number"/>
+      </group>
     </else>
   </choose>
 </macro>
-
 </style>
