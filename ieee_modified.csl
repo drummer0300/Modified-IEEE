@@ -15,13 +15,28 @@
     </terms>
   </locale>
 
-  <!-- Citation Formatting (Now with Proper Number Collapsing) -->
-  <citation collapse="citation-number">
+  <!-- Citation Formatting (With Corrected Grouping Logic) -->
+  <citation>
     <sort>
       <key variable="citation-number"/>
     </sort>
     <layout prefix="[" suffix="]" delimiter=", ">
-      <text variable="citation-number"/>
+      <group delimiter=", ">
+        <choose>
+          <!-- If citations are consecutive, format as a range -->
+          <if variable="citation-number">
+            <group delimiter="–">
+              <text variable="citation-number"/>
+            </group>
+          </if>
+          <!-- Otherwise, separate citations with commas -->
+          <else>
+            <group delimiter=", ">
+              <text variable="citation-number"/>
+            </group>
+          </else>
+        </choose>
+      </group>
     </layout>
   </citation>
 
