@@ -16,12 +16,25 @@
   </locale>
 
   <!-- Citation Formatting -->
-  <citation collapse="citation-number">
+  <citation>
     <sort>
       <key variable="citation-number"/>
     </sort>
     <layout prefix="[" suffix="]" delimiter=", ">
-      <text variable="citation-number"/>
+      <group delimiter=", ">
+        <choose>
+          <!-- If there are consecutive numbers, collapse them with a dash -->
+          <if position="subsequent" match="any">
+            <group delimiter="–">
+              <text variable="citation-number"/>
+            </group>
+          </if>
+          <!-- Otherwise, separate citations with a comma -->
+          <else>
+            <text variable="citation-number"/>
+          </else>
+        </choose>
+      </group>
     </layout>
   </citation>
 
